@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import {useNavigate} from 'react-router-dom'
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
+ 
 } from '@ant-design/icons';
+import {AiOutlineDashboard, AiOutlineShoppingCart, AiOutlineUser} from 'react-icons/ai';
+import {SiBrandfolder} from 'react-icons/si'
 import { Layout, Menu, Button, theme } from 'antd';
 const { Header, Sider, Content } = Layout;
 const MainLayout = () => {
@@ -13,6 +14,7 @@ const MainLayout = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  const navigate = useNavigate()
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -20,23 +22,63 @@ const MainLayout = () => {
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={['1']}
+          defaultSelectedKeys={['']}
+          onClick={({key})=>{
+            if (key === 'signout') {
+
+            } else {
+              navigate(key)
+            }
+
+          }}
           items={[
             {
-              key: '1',
-              icon: <UserOutlined />,
-              label: 'nav 1',
+              key: '',
+              icon: <AiOutlineDashboard className='fs-4' />,
+              label: 'Dashboard',
             },
             {
-              key: '2',
-              icon: <VideoCameraOutlined />,
-              label: 'nav 2',
+              key: 'customers',
+              icon: <AiOutlineDashboard className='fs-4'/>,
+              label: 'Customers',
             },
             {
-              key: '3',
-              icon: <UploadOutlined />,
-              label: 'nav 3',
-            },
+              key: 'catalog',
+              icon: <AiOutlineShoppingCart className='fs-4'/>,
+              label: 'Catalog',
+              children: [
+                {
+                  key: 'product',
+                  icon: <AiOutlineShoppingCart className='fs-4'/>,
+                  label: 'Add Product'
+                },
+                {
+                  key: 'product-list',
+                  icon: <AiOutlineShoppingCart className='fs-4'/>,
+                  label: 'Product List'
+                },
+                {
+                  key: "category",
+                  icon: <SiBrandfolder className='fs-4' />,
+                  label: "Brand"
+                },
+                {
+                  key: "list-category",
+                  icon: <SiBrandfolder className='fs-4' />,
+                  label: "Brand List"
+                },
+                {
+                  key: "category",
+                  icon: <SiBrandfolder className='fs-4' />,
+                  label: "Category"
+                },
+                {
+                  key: "list-category",
+                  icon: <SiBrandfolder className='fs-4' />,
+                  label: "Category List"
+                }
+              ]
+            }
           ]}
         />
       </Sider>
