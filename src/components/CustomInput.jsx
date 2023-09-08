@@ -10,7 +10,7 @@ const CustomInput = (props) => {
         id={i_id}
         placeholder={label}
       />
-      <label for={label}>{label}</label>
+      <label htmlFor={label}>{label}</label>
     </div>
   );
 };

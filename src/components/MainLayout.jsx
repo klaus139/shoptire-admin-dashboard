@@ -1,5 +1,6 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
-import {useNavigate, Outlet} from 'react-router-dom'
+import {useNavigate, Outlet, Link} from 'react-router-dom'
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -104,7 +105,7 @@ const MainLayout = () => {
               label: 'Orders',
             },
             {
-              key: 'blog',
+              key: 'blogs',
               icon: <FaBloggerB className='fs-4'/>,
               label: 'Blogs',
               children : [
@@ -161,13 +162,30 @@ const MainLayout = () => {
               < IoIosNotificationsOutline className='fs-4'/>
               <span className='badge bg-warning rounded-circle p-1 position-absolute'>3</span>
               </div>
-            <div className='d-flex gap-3 align-items-center'>
+            <div className='d-flex gap-3 align-items-center dropdown'>
               <div>
                 <img width={32} height={32}  src='https://stroyka-admin.html.themeforest.scompiler.ru/variants/ltr/images/customers/customer-4-64x64.jpg' alt='ppimage' />
               </div>
-              <div>
+              <div
+               role='button'
+               id='dropdownMenuLink'
+               data-bs-toggle='dropdown'
+               aria-expanded='false'>
                 <h5 className='mb-0'>Klaus</h5>
                 <p className='mb-0'>nickoklaus5@gmail.com</p>
+              </div>
+              <div className='dropdown-menu' aria-labelledby='dropdownMenuLink'>
+                <li>
+                  <Link className='dropdown-item py-1 mb-1' style={{'height':'auto', 'lineHeight':'20px'}} to='/'>
+                  View Profile
+                  </Link>
+                </li>
+                <li>
+                <Link className='dropdown-item py-1 mb-1' style={{'height':'auto', 'lineHeight':'20px'}} to='/'>
+                  Signout
+                  </Link>
+                </li>
+                 
               </div>
             </div>
 
